@@ -28,7 +28,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="{{ route('gallery.index') }}">
     <i class="fas fa-fw fa-photo-video"></i>
     <span>Travel Galleries</span></a>
 </li>
