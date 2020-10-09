@@ -60,66 +60,22 @@
     <section class="section-popular-content" id="popularContent">
         <div class="container">
         <div class="section-popular-travel row justify-content-center">
-            <div class="col-sm-6 col-md-4 col-lg-3">
+            @foreach ($items as $item)
+                            <div class="col-sm-6 col-md-4 col-lg-3">
             <div
                 class="card-travel text-center d-flex flex-column"
-                style="background-image: url('frontend/images/popular1.jpg'"
-            >
-                <div class="travel-country">FRENCH</div>
-                <div>EIFFEL TOWER</div>
-                <div class="travel-location">PARIS</div>
+                style="background-image: url('{{ $item->galleries->count() ?
+                Storage::url($item->galleries->first()->image) : '' }}')">
+                <div class="travel-country">{{ $item->location }}</div>
+                <div class="travel-location">{{ $item->title }}</div>
                 <div class="travel-button mt-auto">
-                <a href="{{ route('detail') }}" class="btn btn-travel-details px-4">
+                <a href="{{ route('detail', $item->slug) }}" class="btn btn-travel-details px-4">
                     View Details
                 </a>
                 </div>
             </div>
             </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-            <div
-                class="card-travel text-center d-flex flex-column"
-                style="background-image: url('frontend/images/popular2.jpg')"
-            >
-                <div class="travel-country">FRENCH</div>
-                <div>ARCHE DE TRIUMPH</div>
-                <div class="travel-location">PARIS</div>
-                <div class="travel-button mt-auto">
-                <a href="{{ route('detail') }}" class="btn btn-travel-details px-4">
-                    View Details
-                </a>
-                </div>
-            </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-            <div
-                class="card-travel text-center d-flex flex-column"
-                style="background-image: url('frontend/images/popular3.jpg')"
-            >
-                <div class="travel-country">ITALY</div>
-                <div>COLOSSEUM</div>
-                <div class="travel-location">ROME</div>
-                <div class="travel-button mt-auto">
-                <a href="{{ route('detail') }}" class="btn btn-travel-details px-4">
-                    View Details
-                </a>
-                </div>
-            </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-            <div
-                class="card-travel text-center d-flex flex-column"
-                style="background-image: url('frontend/images/popular4.jpg')"
-            >
-                <div class="travel-country">ITALY</div>
-                <div>BOAT</div>
-                <div class="travel-location">FENEZIA</div>
-                <div class="travel-button mt-auto">
-                <a href="{{ route('detail') }}" class="btn btn-travel-details px-4">
-                    View Details
-                </a>
-                </div>
-            </div>
-            </div>
+            @endforeach
         </div>
         </div>
     </section>
@@ -230,7 +186,7 @@
                 I Need Help
             </a>
             <a
-                href=""
+                href="{{ route('register') }}"
                 class="btn btn-get-started px-4 mt-4 mx-1"
                 style="background-color: #f85d5d; color: #fff"
             >
